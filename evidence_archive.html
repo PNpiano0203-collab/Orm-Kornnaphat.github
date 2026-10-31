@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrmKornnaphat FC · ศูนย์รวบรวมหลักฐานและปกป้องชื่อเสียงออม</title>
+  
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #faf7f9;
+      --card: #ffffff;
+      --text: #1a1320;
+      --muted: #7a7085;
+      --accent: #c0268a;
+      --accent-soft: rgba(192, 38, 138, 0.12);
+      --accent2: #0e8aa8;
+      --accent2-soft: rgba(14, 138, 168, 0.12);
+      --border: rgba(26, 19, 32, 0.08);
+      --shadow-sm: 0 2px 8px rgba(26, 19, 32, 0.05);
+      --shadow-md: 0 8px 30px rgba(26, 19, 32, 0.08);
+      --shadow-lg: 0 20px 50px rgba(26, 19, 32, 0.12);
+      --navbg: rgba(250, 247, 249, 0.85);
+      --herobg: linear-gradient(180deg, #fdf8fb 0%, #faf0f7 40%, #f0f9fc 100%);
+      --discbg: linear-gradient(90deg, #fffbeb, #fef3c7);
+      --disctext: #78350f;
+      --discicon: #b45309;
+      --inputbg: #ffffff;
+      --dot-dark: #000000;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #120e17;
+      --card: #1c1622;
+      --text: #f0eaf5;
+      --muted: #9a8fa8;
+      --accent: #e04aa5;
+      --accent-soft: rgba(224, 74, 165, 0.18);
+      --accent2: #2bb4d4;
+      --accent2-soft: rgba(43, 180, 212, 0.18);
+      --border: rgba(240, 234, 245, 0.12);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
+      --navbg: rgba(18, 14, 23, 0.88);
+      --herobg: linear-gradient(180deg, #1a1320 0%, #1c1226 40%, #0e1a22 100%);
+      --discbg: linear-gradient(90deg, #2a1f0e, #33260f);
+      --disctext: #fcd34d;
+      --discicon: #f59e0b;
+      --inputbg: #241c2c;
+      --dot-dark: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Sarabun', sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Buttons & Toggles */
+    .togglebtn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      font-family: 'Kanit', sans-serif;
+      transition: all 0.25s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .togglebtn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Nav */
+    .glassnav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navbg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .navinner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brandlogo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(192, 38, 138, 0.35);
+    }
+
+    .brandname {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.15;
+    }
+
+    .brandsub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .navlink {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: all 0.25s;
+    }
+
+    .navlink:hover {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .navcta {
+      background: linear-gradient(135deg, var(--accent), #a01e70);
+      color: #fff !important;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: 'Kanit', sans-serif;
+      box-shadow: 0 4px 14px rgba(192, 38, 138, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .navcta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(192, 38, 138, 0.45);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 72px;
+      background: var(--herobg);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.35s ease;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .blob1 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(192, 38, 138, 0.35), transparent 70%);
+      top: -120px;
+      right: -80px;
+      animation: float1 12s ease-in-out infinite;
+    }
+
+    .blob2 {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(14, 138, 168, 0.3), transparent 70%);
+      bottom: -100px;
+      left: -60px;
+      animation: float2 14s ease-in-out infinite;
+    }
+
+    .blob3 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(230, 22, 45, 0.18), transparent 70%);
+      top: 40%;
+      left: 45%;
+      animation: float1 16s ease-in-out infinite reverse;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, -20px); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-25px, 25px); }
+    }
+
+    .gridoverlay {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(26, 19, 32, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(26, 19, 32, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      pointer-events: none;
+    }
+
+    body[data-theme="dark"] .gridoverlay {
+      background-image: linear-gradient(rgba(240, 234, 245, 0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(240, 234, 245, 0.04) 1px, transparent 1px);
+    }
+
+    .heroinner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .herobadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    body[data-theme="dark"] .herobadge {
+      background: rgba(28, 22, 34, 0.6);
+    }
+
+    .livedot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #16a34a;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+    }
+
+    .herotitle {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 52px);
+      line-height: 1.15;
+      margin: 0 0 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .gradtext {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .herosub {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 0 32px;
+    }
+
+    .herocta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btnprimary {
+      background: linear-gradient(135deg, var(--accent), #a01e70);
+      color: #fff !important;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14.5px;
+      font-family: 'Kanit', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(192, 38, 138, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btnprimary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(192, 38, 138, 0.45);
+    }
+
+    .btnghost {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14.5px;
+      font-family: 'Kanit', sans-serif;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    body[data-theme="dark"] .btnghost {
+      background: rgba(28, 22, 34, 0.6);
+    }
+
+    .btnghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .herostats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .hstat {
+      padding: 0 24px 0 0;
+    }
+
+    .hstatnum {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .hstatlabel {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .hstatdiv {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+      margin: 0 20px;
+    }
+
+    .heroright {
+      position: relative;
+      height: 420px;
+    }
+
+    .floatcard {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow-lg);
+      width: 300px;
+      animation: floatcard 6s ease-in-out infinite;
+    }
+
+    body[data-theme="dark"] .floatcard {
+      background: rgba(28, 22, 34, 0.88);
+      border-color: rgba(240, 234, 245, 0.1);
+    }
+
+    .floatcard2 {
+      top: 220px;
+      left: 40px;
+      animation-delay: -3s;
+    }
+
+    @keyframes floatcard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .floatcard-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .fc-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e6162d, #ff6b6b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .fc-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .fc-name {
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+
+    .fc-platform {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .fc-status {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .fc-status.verified {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .fc-status.pending {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .fc-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .fc-line {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, rgba(128, 128, 128, 0.15), rgba(128, 128, 128, 0.06));
+    }
+
+    .fc-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fc-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .fc-views {
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .fc-severity {
+      margin-top: 4px;
+    }
+
+    .sev-label {
+      font-size: 10.5px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .sev-track {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(128, 128, 128, 0.15);
+      overflow: hidden;
+    }
+
+    .sev-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f59e0b, #dc2626);
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: var(--discbg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      transition: background 0.35s ease;
+    }
+
+    .disclaimerinner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .discicon {
+      flex-shrink: 0;
+      margin-top: 2px;
+      stroke: var(--discicon);
+      transition: stroke 0.35s ease;
+    }
+
+    .disctext {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--disctext);
+      transition: color 0.35s ease;
+    }
+
+    /* Platform Strip */
+    .platformstrip {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .pslabel {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    .pslogos {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .plogo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--muted);
+      font-family: 'Kanit', sans-serif;
+      transition: color 0.2s;
+    }
+
+    .plogo:hover {
+      color: var(--text);
+    }
+
+    .pdotlg {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-x {
+      background: var(--dot-dark);
+    }
+
+    /* Sections */
+    .section {
+      padding: 72px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sectionalt {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      max-width: none;
+      transition: background 0.35s ease;
+    }
+
+    .sectionalt > .sectionhead,
+    .sectionalt > .searchwrap,
+    .sectionalt > .filtergroup,
+    .sectionalt > .cardgrid,
+    .sectionalt > .emptystate,
+    .sectionalt > .resultcount {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sectionhead {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .kicker {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-family: 'Kanit', sans-serif;
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--accent-soft);
+      border-radius: 999px;
+    }
+
+    .kicker2 {
+      color: var(--accent2);
+      background: var(--accent2-soft);
+    }
+
+    .sectiontitle {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(26px, 3.5vw, 36px);
+      margin: 0 0 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .sectionsub {
+      color: var(--muted);
+      font-size: 14.5px;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Accounts Grid */
+    .accountgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .acct-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .acct-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .acct-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .acct-card:hover::before {
+      opacity: 1;
+    }
+
+    .acct-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .acct-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .acct-name {
+      font-weight: 700;
+      font-size: 15.5px;
+      word-break: break-all;
+    }
+
+    .acct-date {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .acct-countrow {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .acct-count {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 800;
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .acct-countlabel {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .acct-verified {
+      margin-left: auto;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .severity-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(128, 128, 128, 0.15);
+      overflow: hidden;
+    }
+
+    .severity-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 1s ease;
+    }
+
+    .acct-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .acct-badgelabel {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .acct-badgerow {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent-soft), var(--accent2-soft));
+      color: var(--accent);
+      border: none;
+      padding: 11px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Sarabun', sans-serif;
+      width: 100%;
+      transition: all 0.25s;
+    }
+
+    .view-btn:hover {
+      transform: scale(1.01);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Search & Filter */
+    .searchwrap {
+      position: relative;
+      max-width: 680px;
+      margin: 0 auto 12px;
+    }
+
+    .searchicon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .searchinput {
+      width: 100%;
+      padding: 16px 50px 16px 52px;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      font-size: 15px;
+      font-family: 'Sarabun', sans-serif;
+      background: var(--inputbg);
+      color: var(--text);
+      outline: none;
+      transition: all 0.25s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .searchinput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow-md);
+    }
+
+    .clearbtn {
+      display: none;
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .clearbtn:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .resultcount {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .filtergroup {
+      max-width: 1200px;
+      margin: 0 auto 16px;
+    }
+
+    .filterlabel {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .chiprow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Sarabun', sans-serif;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .chip.active {
+      background: linear-gradient(135deg, var(--accent), #a01e70);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(192, 38, 138, 0.3);
+    }
+
+    .chip2.active {
+      background: linear-gradient(135deg, var(--accent2), #0a6e88);
+      box-shadow: 0 4px 14px rgba(14, 138, 168, 0.3);
+    }
+
+    .chip2:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    /* Cards */
+    .cardgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .ev-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ev-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .ev-shot {
+      height: 150px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .ev-shot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.06));
+    }
+
+    .ev-body {
+      padding: 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ev-account {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .ev-desc {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+      flex: 1;
+    }
+
+    .ev-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .ev-date {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    mark {
+      background: #fef08a;
+      color: #1a1320;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    .emptystate {
+      display: none;
+      text-align: center;
+      padding: 56px 20px;
+      color: var(--muted);
+      font-size: 14px;
+      border: 1.5px dashed var(--border);
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+
+    /* Submit Section */
+    .submitwrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .checkrow {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 13.5px;
+    }
+
+    .checkdot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .checkdot.ok {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .checkdot.no {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .submitform {
+      background: linear-gradient(160deg, var(--card), var(--bg));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .formrow {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .formrow label {
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .req {
+      color: #dc2626;
+    }
+
+    .finput {
+      border: 1.5px solid var(--border);
+      background: var(--inputbg);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      font-family: 'Sarabun', sans-serif;
+      outline: none;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .finput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .formgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .dropzone {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: var(--card);
+    }
+
+    .dropzone:hover,
+    .dropzone.drag-active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: scale(1.01);
+    }
+
+    .dztext {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    .dzsub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .filelist {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .file-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 12px;
+      word-break: break-all;
+    }
+
+    .submitbtn {
+      background: linear-gradient(135deg, var(--accent), #a01e70);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: 'Kanit', sans-serif;
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(192, 38, 138, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submitbtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(192, 38, 138, 0.45);
+    }
+
+    .formsuccess {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      padding: 13px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Guide */
+    .stepsgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stepcard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .stepcard:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stepnum {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .stepcard h3 {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      margin: 0 0 10px;
+    }
+
+    .stepcard p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(180deg, #1a1320, #120d18);
+      color: #a89fb3;
+      padding: 0 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footertop {
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), #e6162d);
+    }
+
+    .footerinner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 0 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 36px;
+    }
+
+    .footerbrand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: #fff;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .footerdesc {
+      font-size: 12.5px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .footertitle {
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 14px;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    .footercol {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 12.5px;
+    }
+
+    .footercol a {
+      color: #a89fb3;
+      transition: color 0.2s;
+    }
+
+    .footercol a:hover {
+      color: #fff;
+    }
+
+    .footerbottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11.5px;
+      text-align: center;
+      color: #6b6178;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .heroinner {
+        grid-template-columns: 1fr;
+      }
+      .heroright {
+        display: none;
+      }
+      .submitwrap {
+        grid-template-columns: 1fr;
+      }
+      .formgrid {
+        grid-template-columns: 1fr;
+      }
+      .hstatdiv {
+        display: none;
+      }
+      .hstat {
+        padding: 0 20px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== NAV ===== -->
+  <nav class="glassnav">
+    <div class="navinner">
+      <div class="brand">
+        <div class="brandlogo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+        </div>
+        <div class="brandtext">
+          <div class="brandname" data-i18n="brand">OrmKornnaphat FC</div>
+          <div class="brandsub" data-i18n="brandsub">ศูนย์รวบรวมหลักฐาน · ปกป้องชื่อเสียงออม</div>
+        </div>
+      </div>
+      <div class="navlinks">
+        <a href="#accounts" class="navlink" data-i18n="nav_accounts">รวมวีระกรรม</a>
+        <a href="#archive" class="navlink" data-i18n="nav_archive">คลังหลักฐาน</a>
+        <a href="#submit" class="navlink" data-i18n="nav_submit">ส่งหลักฐาน</a>
+        <a href="#guide" class="navlink" data-i18n="nav_guide">คู่มือ</a>
+        <!-- toggles -->
+        <button id="langToggle" class="togglebtn" title="Switch Language">
+          <span id="langLabel">EN</span>
+        </button>
+        <button id="themeToggle" class="togglebtn" title="Toggle Dark Mode">
+          <svg id="iconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="iconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+        <a href="#submit" class="navcta" data-i18n="nav_cta">ส่งหลักฐานด่วน</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="gridoverlay"></div>
+    <div class="heroinner">
+      <div class="heroleft reveal">
+        <div class="herobadge">
+          <span class="livedot"></span>
+          <span data-i18n="hero_badge">แฟนคลับออม กรณ์ภัทร · เปิดรับหลักฐานทุกวัน 08:00 – 24:00 น.</span>
+        </div>
+        <h1 class="herotitle">
+          <span data-i18n="hero_title1">ศูนย์รวบรวมหลักฐาน</span><br/>
+          <span class="gradtext" data-i18n="hero_title2">ปกป้องชื่อเสียงของออม</span>
+        </h1>
+        <p class="herosub" data-i18n="hero_sub">แฟนคลับ Orm Kornnaphat เก็บถาวรโพสต์สาธารณะ ลิงก์เดิม หน้าจอ และเวลาที่แน่นอน ครอบคลุม 6 แพลตฟอร์ม พร้อมสรุปรวมวีระกรรมของแต่ละบัญชี เพื่อใช้เป็นหลักฐานทางกฎหมาย — ไม่เปิดเผยข้อมูลส่วนตัว ไม่คุกคาม ไม่แชร์เพื่อการทุจริต</p>
+        <div class="herocta">
+          <a href="#accounts" class="btnprimary">
+            <span data-i18n="hero_btn1">ดูรวมวีระกรรมบัญชี</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#archive" class="btnghost" data-i18n="hero_btn2">ค้นหาบัญชีแอนตี้</a>
+        </div>
+        <div class="herostats">
+          <div class="hstat"><div class="hstatnum" data-count="263">0</div><div class="hstatlabel" data-i18n="stat1">หลักฐานยืนยัน</div></div>
+          <div class="hstatdiv"></div>
+          <div class="hstat"><div class="hstatnum" data-count="15">0</div><div class="hstatlabel" data-i18n="stat2">บัญชีติดตาม</div></div>
+          <div class="hstatdiv"></div>
+          <div class="hstat"><div class="hstatnum" data-count="38">0</div><div class="hstatlabel" data-i18n="stat3">คดีดำเนินการ</div></div>
+          <div class="hstatdiv"></div>
+          <div class="hstat"><div class="hstatnum" data-count="6">0</div><div class="hstatlabel" data-i18n="stat4">แพลตฟอร์ม</div></div>
+        </div>
+      </div>
+      <div class="heroright reveal" style="transition-delay:.15s">
+        <div class="floatcard">
+          <div class="floatcard-head">
+            <div class="fc-avatar">W</div>
+            <div class="fc-meta">
+              <div class="fc-name">@weibo_demo88</div>
+              <div class="fc-platform"><span class="pdot" style="background:#e6162d"></span>Weibo · 18 Oct 2026</div>
+            </div>
+            <span class="fc-status verified" data-i18n="status_verified">ยืนยันแล้ว</span>
+          </div>
+          <div class="fc-body">
+            <div class="fc-line" style="width:92%"></div>
+            <div class="fc-line" style="width:78%"></div>
+            <div class="fc-line" style="width:85%"></div>
+          </div>
+          <div class="fc-foot">
+            <span class="fc-tag" data-i18n="fc_tag">กล่าวหาเท็จเกี่ยวกับออม</span>
+            <span class="fc-views">1,200 shares</span>
+          </div>
+        </div>
+        <div class="floatcard floatcard2">
+          <div class="floatcard-head">
+            <div class="fc-avatar" style="background:linear-gradient(135deg,#0891b2,#06b6d4)">X</div>
+            <div class="fc-meta">
+              <div class="fc-name">@user_xxxx01</div>
+              <div class="fc-platform"><span class="pdot dot-x"></span>X / Twitter · 3 posts</div>
+            </div>
+            <span class="fc-status pending" data-i18n="status_pending">กำลังติดตาม</span>
+          </div>
+          <div class="fc-severity">
+            <div class="sev-label" data-i18n="sev_label">ระดับวีระกรรม (ต่อออม)</div>
+            <div class="sev-track"><div class="sev-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== DISCLAIMER ===== -->
+  <section class="disclaimer">
+    <div class="disclaimerinner">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="discicon">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <div class="disctext" data-i18n="disclaimer"><strong>นโยบายการใช้งาน:</strong> ไซต์นี้เป็นที่เก็บถาวรโพสต์สาธารณะเพื่อวัตถุประสงค์ทางกฎหมายเพื่อปกป้องชื่อเสียงของ ออม กรณ์ภัทร เท่านั้น ห้ามใช้ข้อมูลเพื่อคุกคาม ข่มขู่ แชร์เพื่อทุจริต หรือเปิดเผยข้อมูลส่วนตัวของบุคคลใดๆ ชื่อบัญชีที่แสดงเป็นตัวอย่างสาธิต ไม่ใช่บุคคลจริง</div>
+    </div>
+  </section>
+
+  <!-- ===== PLATFORM STRIP ===== -->
+  <section class="platformstrip reveal">
+    <div class="pslabel" data-i18n="pslabel">ครอบคลุมทุกแพลตฟอร์มที่มีการกล่าวถึงออม</div>
+    <div class="pslogos">
+      <div class="plogo"><span class="pdotlg dot-x"></span>X</div>
+      <div class="plogo"><span class="pdotlg" style="background:#010101"></span>TikTok</div>
+      <div class="plogo"><span class="pdotlg" style="background:#1877f2"></span>Facebook</div>
+      <div class="plogo"><span class="pdotlg" style="background:#e1306c"></span>Instagram</div>
+      <div class="plogo"><span class="pdotlg" style="background:#ff0000"></span>YouTube</div>
+      <div class="plogo"><span class="pdotlg" style="background:#e6162d"></span>Weibo</div>
+    </div>
+  </section>
+
+  <!-- ===== ACCOUNTS ===== -->
+  <section id="accounts" class="section">
+    <div class="sectionhead reveal">
+      <div class="kicker" data-i18n="acc_kicker">Offense Summary</div>
+      <h2 class="sectiontitle" data-i18n="acc_title">รวมวีระกรรมบัญชีแอนตี้ออม</h2>
+      <p class="sectionsub" data-i18n="acc_sub">สรุปการละเมิดชื่อเสียงของ ออม กรณ์ภัทร รวมของแต่ละบัญชี เรียงตามจำนวนวีระกรรมมากไปน้อย — กดเพื่อดูหลักฐานทั้งหมด</p>
+    </div>
+    <div id="accountGrid" class="accountgrid"></div>
+  </section>
+
+  <!-- ===== ARCHIVE ===== -->
+  <section id="archive" class="section sectionalt">
+    <div class="sectionhead reveal">
+      <div class="kicker kicker2" data-i18n="arc_kicker">Evidence Archive</div>
+      <h2 class="sectiontitle" data-i18n="arc_title">คลังหลักฐาน + ค้นหาบัญชี</h2>
+      <p class="sectionsub" data-i18n="arc_sub">ค้นหาตามชื่อบัญชีแอนตี้ หรือกรองตามแพลตฟอร์มและประเภทการละเมิดที่กระทำต่อออม</p>
+    </div>
+
+    <div class="searchwrap reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="searchicon">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input id="searchInput" type="text" class="searchinput" data-i18n-ph="search_ph" placeholder="ค้นหาชื่อบัญชีแอนตี้ เช่น @user_xxxx01, @weibo_demo88..."/>
+      <button id="clearSearch" class="clearbtn" aria-label="Clear Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="resultCount" class="resultcount"></div>
+
+    <div class="filtergroup reveal">
+      <div class="filterlabel" data-i18n="fl_platform">แพลตฟอร์ม</div>
+      <div id="platformFilters" class="chiprow">
+        <button class="chip active" data-platform="all" data-i18n="chip_all">ทั้งหมด</button>
+        <button class="chip" data-platform="x">X / Twitter</button>
+        <button class="chip" data-platform="tiktok">TikTok</button>
+        <button class="chip" data-platform="facebook">Facebook</button>
+        <button class="chip" data-platform="instagram">Instagram</button>
+        <button class="chip" data-platform="youtube">YouTube</button>
+        <button class="chip" data-platform="weibo">Weibo</button>
+      </div>
+    </div>
+    <div class="filtergroup reveal" style="margin-bottom:32px">
+      <div class="filterlabel" data-i18n="fl_type">ประเภทการละเมิด</div>
+      <div id="typeFilters" class="chiprow">
+        <button class="chip chip2 active" data-type="all" data-i18n="chip_all">ทั้งหมด</button>
+        <button class="chip chip2" data-type="defame" data-i18n="t_defame">การหมิ่นประมาท</button>
+        <button class="chip chip2" data-type="false" data-i18n="t_false">การกล่าวหาเท็จ</button>
+        <button class="chip chip2" data-type="harass" data-i18n="t_harass">การคุกคาม</button>
+        <button class="chip chip2" data-type="fake" data-i18n="t_fake">ข่าวปลอม</button>
+      </div>
+    </div>
+
+    <div id="cardGrid" class="cardgrid"></div>
+    <div id="emptyState" class="emptystate" data-i18n="empty">ไม่พบรายการหลักฐานที่ตรงกับคำค้นหาหรือตัวกรองที่เลือก</div>
+  </section>
+
+  <!-- ===== SUBMIT ===== -->
+  <section id="submit" class="section">
+    <div class="submitwrap reveal">
+      <div class="submitleft">
+        <div class="kicker kicker2" data-i18n="sub_kicker">Submit Evidence</div>
+        <h2 class="sectiontitle" style="text-align:left" data-i18n="sub_title">ส่งหลักฐานแอนตี้ออม</h2>
+        <p class="sectionsub" style="text-align:left" data-i18n="sub_sub">กรอกรายละเอียดให้ครบถ้วน รองรับทุกแพลตฟอร์มรวมถึง Weibo ทีมงานแฟนคลับจะตรวจสอบภายใน 24–48 ชั่วโมง</p>
+        <div class="checklist">
+          <div class="checkrow"><span class="checkdot ok">✓</span><span data-i18n="chk1">ภาพหน้าจอที่เห็นชื่อผู้ใช้ เนื้อหา และเวลาอย่างชัดเจน</span></div>
+          <div class="checkrow"><span class="checkdot ok">✓</span><span data-i18n="chk2">ลิงก์เดิมของโพสต์ (ยังไม่ถูกลบ) รองรับลิงก์ weibo.com</span></div>
+          <div class="checkrow"><span class="checkdot ok">✓</span><span data-i18n="chk3">บันทึกเวลาที่เห็นโพสต์และแพลตฟอร์ม</span></div>
+          <div class="checkrow"><span class="checkdot no">✗</span><span style="color:var(--muted)" data-i18n="chk4">ห้ามส่งข้อมูลส่วนตัว: ชื่อจริง ที่อยู่ เบอร์โทร รูปใบหน้าบุคคลที่สาม</span></div>
+        </div>
+      </div>
+      <form id="evidenceForm" class="submitform">
+        <div class="formrow">
+          <label><span data-i18n="f_account">ชื่อบัญชีแอนตี้</span> <span class="req">*</span></label>
+          <input required type="text" class="finput" data-i18n-ph="f_account_ph" placeholder="@username หรือชื่อเพจ/ช่อง/ชื่อบน Weibo"/>
+        </div>
+        <div class="formrow">
+          <label><span data-i18n="f_platform">แพลตฟอร์ม</span> <span class="req">*</span></label>
+          <select required class="finput">
+            <option value="" data-i18n="f_select">เลือกแพลตฟอร์ม</option>
+            <option>X / Twitter</option><option>TikTok</option><option>Facebook</option>
+            <option>Instagram</option><option>YouTube</option><option>Weibo</option><option data-i18n="f_other">อื่นๆ</option>
+          </select>
+        </div>
+        <div class="formrow">
+          <label><span data-i18n="f_link">ลิงก์โพสต์เดิม</span> <span class="req">*</span></label>
+          <input required type="url" class="finput" data-i18n-ph="f_link_ph" placeholder="https://... (รองรับ weibo.com)"/>
+        </div>
+        <div class="formgrid">
+          <div class="formrow">
+            <label data-i18n="f_date">วันที่เห็นโพสต์</label>
+            <input type="date" class="finput"/>
+          </div>
+          <div class="formrow">
+            <label data-i18n="f_type">ประเภทการละเมิด</label>
+            <select class="finput">
+              <option data-i18n="t_defame">การหมิ่นประมาท</option><option data-i18n="t_false">การกล่าวหาเท็จ</option>
+              <option data-i18n="t_harass">การคุกคาม</option><option data-i18n="t_fake">ข่าวปลอม</option><option data-i18n="f_other">อื่นๆ</option>
+            </select>
+          </div>
+        </div>
+        <div class="formrow">
+          <label data-i18n="f_desc">รายละเอียดเพิ่มเติม</label>
+          <textarea rows="3" class="finput" style="resize:vertical" data-i18n-ph="f_desc_ph" placeholder="อธิบายสิ่งที่พบเกี่ยวกับการกล่าวหาเท็จ/หมิ่นออม อย่าส่งข้อมูลส่วนตัวของบุคคลอื่น"></textarea>
+        </div>
+        <div id="dropZone" class="dropzone">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <div class="dztext" data-i18n="dz_text">ลากภาพหน้าจอมาที่นี่ หรือคลิกเพื่อแนบไฟล์</div>
+          <div class="dzsub" data-i18n="dz_sub">PNG / JPG สูงสุด 10 MB ต่อไฟล์</div>
+          <input type="file" id="fileInput" accept="image/*" multiple style="display:none"/>
+        </div>
+        <div id="fileList" class="filelist"></div>
+        <button type="submit" class="submitbtn" data-i18n="f_submit">ส่งหลักฐานให้ทีมตรวจสอบ</button>
+        <div id="formSuccess" class="formsuccess" data-i18n="f_success">✓ ส่งหลักฐานเรียบร้อยแล้ว ทีมงานแฟนคลับจะติดต่อกลับภายใน 24–48 ชั่วโมง</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== GUIDE ===== -->
+  <section id="guide" class="section sectionalt">
+    <div class="sectionhead reveal">
+      <div class="kicker" data-i18n="gui_kicker">Evidence Guide</div>
+      <h2 class="sectiontitle" data-i18n="gui_title">วิธีเก็บหลักฐานแอนตี้ออมให้ใช้ได้ในศาล</h2>
+      <p class="sectionsub" data-i18n="gui_sub">ทำตาม 4 ขั้นตอนนี้ ใช้ได้กับทุกแพลตฟอร์มรวมถึง Weibo เพื่อปกป้องชื่อเสียงของออม</p>
+    </div>
+    <div class="stepsgrid">
+      <div class="stepcard reveal"><div class="stepnum">01</div><h3 data-i18n="s1_t">ถ่ายหน้าจอทันที</h3><p data-i18n="s1_d">เห็นโพสต์แอนตี้ออมให้ถ่ายทันที ให้เห็นชื่อผู้ใช้ เนื้อหา วันที่ และเวลาอย่างชัดเจน ถ้ามีคอมเมนต์ให้ถ่ายรวมด้วย อย่าตัดภาพ</p></div>
+      <div class="stepcard reveal" style="transition-delay:.08s"><div class="stepnum">02</div><h3 data-i18n="s2_t">บันทึกลิงก์เดิม</h3><p data-i18n="s2_d">คัดลอก URL ของโพสต์ก่อนที่จะถูกลบ (Weibo: ลิงก์ weibo.com/status/...) แนะนำใช้บริการเก็บถาวรออนไลน์เพื่อป้องกันโพสต์หาย</p></div>
+      <div class="stepcard reveal" style="transition-delay:.16s"><div class="stepnum">03</div><h3 data-i18n="s3_t">ส่งผ่านฟอร์ม</h3><p data-i18n="s3_d">ส่งภาพและลิงก์ผ่านฟอร์มบนเว็บ ทีมงานแฟนคลับจะจัดทำรายงานและตรวจสอบความถูกต้องก่อนนำส่งทีมกฎหมาย</p></div>
+      <div class="stepcard reveal" style="transition-delay:.24s"><div class="stepnum">04</div><h3 data-i18n="s4_t">รอการยืนยัน</h3><p data-i18n="s4_d">หลักฐานที่ผ่านการยืนยันจะถูกจัดทำเป็นชุดหลักฐานทางกฎหมาย และแจ้งผลกลับให้คุณทราบทางอีเมล</p></div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footertop"></div>
+    <div class="footerinner">
+      <div class="footercol">
+        <div class="footerbrand">
+          <div class="brandlogo" style="width:32px;height:32px;border-radius:10px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <span>OrmKornnaphat FC</span>
+        </div>
+        <p class="footerdesc" data-i18n="footer_desc">ศูนย์รวบรวมหลักฐานทางกฎหมายของแฟนคลับ ออม กรณ์ภัทร ครอบคลุม 6 แพลตฟอร์ม: X, TikTok, Facebook, Instagram, YouTube, Weibo</p>
+      </div>
+      <div class="footercol">
+        <div class="footertitle" data-i18n="footer_menu">เมนู</div>
+        <a href="#accounts" data-i18n="nav_accounts">รวมวีระกรรม</a>
+        <a href="#archive" data-i18n="nav_archive">คลังหลักฐาน</a>
+        <a href="#submit" data-i18n="nav_submit">ส่งหลักฐาน</a>
+        <a href="#guide" data-i18n="nav_guide">คู่มือการเก็บหลักฐาน</a>
+      </div>
+      <div class="footercol">
+        <div class="footertitle" data-i18n="footer_policy">นโยบาย</div>
+        <span data-i18n="fp1">นโยบายความเป็นส่วนตัว</span>
+        <span data-i18n="fp2">เงื่อนไขการใช้งาน</span>
+        <span data-i18n="fp3">ติดต่อทีมกฎหมายแฟนคลับ</span>
+      </div>
+    </div>
+    <div class="footerbottom" data-i18n="footer_copy">© 2026 OrmKornnaphat FC · Evidence Archive — ข้อมูลทั้งหมดเป็นตัวอย่างสาธิต ไม่เกี่ยวข้องกับบุคคลจริง ห้ามใช้เพื่อการคุกคามหรือทุจริต</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ===== I18N DICTIONARY =====
+  var I18N = {
+    th: {
+      brand: "OrmKornnaphat FC",
+      brandsub: "ศูนย์รวบรวมหลักฐาน · ปกป้องชื่อเสียงออม",
+      nav_accounts: "รวมวีระกรรม",
+      nav_archive: "คลังหลักฐาน",
+      nav_submit: "ส่งหลักฐาน",
+      nav_guide: "คู่มือ",
+      nav_cta: "ส่งหลักฐานด่วน",
+      hero_badge: "แฟนคลับออม กรณ์ภัทร · เปิดรับหลักฐานทุกวัน 08:00 – 24:00 น.",
+      hero_title1: "ศูนย์รวบรวมหลักฐาน",
+      hero_title2: "ปกป้องชื่อเสียงของออม",
+      hero_sub: "แฟนคลับ Orm Kornnaphat เก็บถาวรโพสต์สาธารณะ ลิงก์เดิม หน้าจอ และเวลาที่แน่นอน ครอบคลุม 6 แพลตฟอร์ม พร้อมสรุปรวมวีระกรรมของแต่ละบัญชี เพื่อใช้เป็นหลักฐานทางกฎหมาย — ไม่เปิดเผยข้อมูลส่วนตัว ไม่คุกคาม ไม่แชร์เพื่อการทุจริต",
+      hero_btn1: "ดูรวมวีระกรรมบัญชี",
+      hero_btn2: "ค้นหาบัญชีแอนตี้",
+      stat1: "หลักฐานยืนยัน",
+      stat2: "บัญชีติดตาม",
+      stat3: "คดีดำเนินการ",
+      stat4: "แพลตฟอร์ม",
+      status_verified: "ยืนยันแล้ว",
+      status_pending: "กำลังติดตาม",
+      fc_tag: "กล่าวหาเท็จเกี่ยวกับออม",
+      sev_label: "ระดับวีระกรรม (ต่อออม)",
+      disclaimer: "<strong>นโยบายการใช้งาน:</strong> ไซต์นี้เป็นที่เก็บถาวรโพสต์สาธารณะเพื่อวัตถุประสงค์ทางกฎหมายเพื่อปกป้องชื่อเสียงของ ออม กรณ์ภัทร เท่านั้น ห้ามใช้ข้อมูลเพื่อคุกคาม ข่มขู่ แชร์เพื่อทุจริต หรือเปิดเผยข้อมูลส่วนตัวของบุคคลใดๆ ชื่อบัญชีที่แสดงเป็นตัวอย่างสาธิต ไม่ใช่บุคคลจริง",
+      pslabel: "ครอบคลุมทุกแพลตฟอร์มที่มีการกล่าวถึงออม",
+      acc_kicker: "Offense Summary",
+      acc_title: "รวมวีระกรรมบัญชีแอนตี้ออม",
+      acc_sub: "สรุปการละเมิดชื่อเสียงของ ออม กรณ์ภัทร รวมของแต่ละบัญชี เรียงตามจำนวนวีระกรรมมากไปน้อย — กดเพื่อดูหลักฐานทั้งหมด",
+      arc_kicker: "Evidence Archive",
+      arc_title: "คลังหลักฐาน + ค้นหาบัญชี",
+      arc_sub: "ค้นหาตามชื่อบัญชีแอนตี้ หรือกรองตามแพลตฟอร์มและประเภทการละเมิดที่กระทำต่อออม",
+      search_ph: "ค้นหาชื่อบัญชีแอนตี้ เช่น @user_xxxx01, @weibo_demo88...",
+      fl_platform: "แพลตฟอร์ม",
+      fl_type: "ประเภทการละเมิด",
+      chip_all: "ทั้งหมด",
+      t_defame: "การหมิ่นประมาท",
+      t_false: "การกล่าวหาเท็จ",
+      t_harass: "การคุกคาม",
+      t_fake: "ข่าวปลอม",
+      empty: "ไม่พบรายการหลักฐานที่ตรงกับคำค้นหาหรือตัวกรองที่เลือก",
+      sub_kicker: "Submit Evidence",
+      sub_title: "ส่งหลักฐานแอนตี้ออม",
+      sub_sub: "กรอกรายละเอียดให้ครบถ้วน รองรับทุกแพลตฟอร์มรวมถึง Weibo ทีมงานแฟนคลับจะตรวจสอบภายใน 24–48 ชั่วโมง",
+      chk1: "ภาพหน้าจอที่เห็นชื่อผู้ใช้ เนื้อหา และเวลาอย่างชัดเจน",
+      chk2: "ลิงก์เดิมของโพสต์ (ยังไม่ถูกลบ) รองรับลิงก์ weibo.com",
+      chk3: "บันทึกเวลาที่เห็นโพสต์และแพลตฟอร์ม",
+      chk4: "ห้ามส่งข้อมูลส่วนตัว: ชื่อจริง ที่อยู่ เบอร์โทร รูปใบหน้าบุคคลที่สาม",
+      f_account: "ชื่อบัญชีแอนตี้",
+      f_account_ph: "@username หรือชื่อเพจ/ช่อง/ชื่อบน Weibo",
+      f_platform: "แพลตฟอร์ม",
+      f_select: "เลือกแพลตฟอร์ม",
+      f_other: "อื่นๆ",
+      f_link: "ลิงก์โพสต์เดิม",
+      f_link_ph: "https://... (รองรับ weibo.com)",
+      f_date: "วันที่เห็นโพสต์",
+      f_type: "ประเภทการละเมิด",
+      f_desc: "รายละเอียดเพิ่มเติม",
+      f_desc_ph: "อธิบายสิ่งที่พบเกี่ยวกับการกล่าวหาเท็จ/หมิ่นออม อย่าส่งข้อมูลส่วนตัวของบุคคลอื่น",
+      dz_text: "ลากภาพหน้าจอมาที่นี่ หรือคลิกเพื่อแนบไฟล์",
+      dz_sub: "PNG / JPG สูงสุด 10 MB ต่อไฟล์",
+      f_submit: "ส่งหลักฐานให้ทีมตรวจสอบ",
+      f_success: "✓ ส่งหลักฐานเรียบร้อยแล้ว ทีมงานแฟนคลับจะติดต่อกลับภายใน 24–48 ชั่วโมง",
+      gui_kicker: "Evidence Guide",
+      gui_title: "วิธีเก็บหลักฐานแอนตี้ออมให้ใช้ได้ในศาล",
+      gui_sub: "ทำตาม 4 ขั้นตอนนี้ ใช้ได้กับทุกแพลตฟอร์มรวมถึง Weibo เพื่อปกป้องชื่อเสียงของออม",
+      s1_t: "ถ่ายหน้าจอทันที",
+      s1_d: "เห็นโพสต์แอนตี้ออมให้ถ่ายทันที ให้เห็นชื่อผู้ใช้ เนื้อหา วันที่ และเวลาอย่างชัดเจน ถ้ามีคอมเมนต์ให้ถ่ายรวมด้วย อย่าตัดภาพ",
+      s2_t: "บันทึกลิงก์เดิม",
+      s2_d: "คัดลอก URL ของโพสต์ก่อนที่จะถูกลบ (Weibo: ลิงก์ weibo.com/status/...) แนะนำใช้บริการเก็บถาวรออนไลน์เพื่อป้องกันโพสต์หาย",
+      s3_t: "ส่งผ่านฟอร์ม",
+      s3_d: "ส่งภาพและลิงก์ผ่านฟอร์มบนเว็บ ทีมงานแฟนคลับจะจัดทำรายงานและตรวจสอบความถูกต้องก่อนนำส่งทีมกฎหมาย",
+      s4_t: "รอการยืนยัน",
+      s4_d: "หลักฐานที่ผ่านการยืนยันจะถูกจัดทำเป็นชุดหลักฐานทางกฎหมาย และแจ้งผลกลับให้คุณทราบทางอีเมล",
+      footer_desc: "ศูนย์รวบรวมหลักฐานทางกฎหมายของแฟนคลับ ออม กรณ์ภัทร ครอบคลุม 6 แพลตฟอร์ม: X, TikTok, Facebook, Instagram, YouTube, Weibo",
+      footer_menu: "เมนู",
+      footer_policy: "นโยบาย",
+      fp1: "นโยบายความเป็นส่วนตัว",
+      fp2: "เงื่อนไขการใช้งาน",
+      fp3: "ติดต่อทีมกฎหมายแฟนคลับ",
+      footer_copy: "© 2026 OrmKornnaphat FC · Evidence Archive — ข้อมูลทั้งหมดเป็นตัวอย่างสาธิต ไม่เกี่ยวข้องกับบุคคลจริง ห้ามใช้เพื่อการคุกคามหรือทุจริต",
+      view_btn: "ดูหลักฐานทั้งหมดของบัญชีนี้",
+      verified_label: "ยืนยันแล้ว",
+      pending_label: "กำลังตรวจสอบ",
+      sev_acc_label: "ระดับวีระกรรม (ต่อออม)",
+      plat_badge: "แพลตฟอร์ม",
+      type_badge: "ประเภทการละเมิด",
+      verified_short: "ยืนยัน",
+      pending_short: "รอตรวจ",
+      count_label: "ครั้งการละเมิดรวม",
+      status_watch: "กำลังติดตาม",
+      status_legal: "ดำเนินคดีแล้ว",
+      showing: "แสดง {n} จาก {t} รายการหลักฐาน",
+      shot: "[ ภาพหน้าจอโพสต์ ]"
+    },
+    en: {
+      brand: "OrmKornnaphat FC",
+      brandsub: "Evidence Archive · Protecting Orm's Reputation",
+      nav_accounts: "Offense Summary",
+      nav_archive: "Evidence Archive",
+      nav_submit: "Submit Evidence",
+      nav_guide: "Guide",
+      nav_cta: "Quick Submit",
+      hero_badge: "Orm Kornnaphat Fan Club · Accepting evidence daily 08:00 – 24:00",
+      hero_title1: "Evidence Collection Center",
+      hero_title2: "Protecting Orm's Reputation",
+      hero_sub: "Orm Kornnaphat Fan Club archives public posts, original links, screenshots, and exact timestamps across 6 platforms, with a consolidated offense summary per account — for legal evidence use only. No personal data, no harassment, no sharing for malicious purposes.",
+      hero_btn1: "View Account Offense Summary",
+      hero_btn2: "Search Anti Accounts",
+      stat1: "Verified Evidence",
+      stat2: "Accounts Tracked",
+      stat3: "Legal Cases",
+      stat4: "Platforms",
+      status_verified: "Verified",
+      status_pending: "Under Review",
+      fc_tag: "False claims about Orm",
+      sev_label: "Offense level (against Orm)",
+      disclaimer: "<strong>Usage Policy:</strong> This site archives public posts solely for legal purposes to protect Orm Kornnaphat's reputation. Do not use this information to harass, threaten, dox, or share maliciously. All account names shown are demo placeholders, not real people.",
+      pslabel: "Covering every platform where Orm is mentioned",
+      acc_kicker: "Offense Summary",
+      acc_title: "Anti-Orm Account Offense Summary",
+      acc_sub: "Consolidated violations against Orm Kornnaphat per account, sorted by offense count — click to view all evidence.",
+      arc_kicker: "Evidence Archive",
+      arc_title: "Evidence Archive + Account Search",
+      arc_sub: "Search by anti account name, or filter by platform and violation type against Orm.",
+      search_ph: "Search anti account name, e.g. @user_xxxx01, @weibo_demo88...",
+      fl_platform: "Platform",
+      fl_type: "Violation Type",
+      chip_all: "All",
+      t_defame: "Defamation",
+      t_false: "False Accusation",
+      t_harass: "Harassment",
+      t_fake: "Fake News",
+      empty: "No evidence matches your search or filters.",
+      sub_kicker: "Submit Evidence",
+      sub_title: "Submit Anti-Orm Evidence",
+      sub_sub: "Fill in the details. Supports all platforms including Weibo. Fan club staff will review within 24–48 hours.",
+      chk1: "Screenshot clearly showing username, content, and timestamp",
+      chk2: "Original post link (not yet deleted) — weibo.com links supported",
+      chk3: "Record the time and platform you saw the post",
+      chk4: "Do NOT submit personal data: real name, address, phone, or third-party face photos",
+      f_account: "Anti account name",
+      f_account_ph: "@username or page/channel/Weibo name",
+      f_platform: "Platform",
+      f_select: "Select platform",
+      f_other: "Other",
+      f_link: "Original post link",
+      f_link_ph: "https://... (weibo.com supported)",
+      f_date: "Date seen",
+      f_type: "Violation type",
+      f_desc: "Additional details",
+      f_desc_ph: "Describe what you found about false claims/defamation of Orm. Do not submit others' personal data.",
+      dz_text: "Drag screenshots here, or click to attach files",
+      dz_sub: "PNG / JPG up to 10 MB each",
+      f_submit: "Submit for Review",
+      f_success: "✓ Evidence submitted. Fan club staff will reply within 24–48 hours.",
+      gui_kicker: "Evidence Guide",
+      gui_title: "How to Collect Court-Admissible Evidence",
+      gui_sub: "Follow these 4 steps, valid on all platforms including Weibo, to protect Orm's reputation.",
+      s1_t: "Screenshot immediately",
+      s1_d: "When you see an anti-Orm post, screenshot immediately. Show username, content, date, and time clearly. Include comments if present. Do not crop.",
+      s2_t: "Save the original link",
+      s2_d: "Copy the post URL before it gets deleted (Weibo: weibo.com/status/...). Use an online archiving service to prevent loss.",
+      s3_t: "Submit via form",
+      s3_d: "Submit screenshots and links via the web form. Fan club staff will compile a report and verify accuracy before sending to the legal team.",
+      s4_t: "Wait for confirmation",
+      s4_d: "Verified evidence is compiled into a legal evidence package and you will be notified by email.",
+      footer_desc: "Legal evidence archive of the Orm Kornnaphat Fan Club, covering 6 platforms: X, TikTok, Facebook, Instagram, YouTube, Weibo.",
+      footer_menu: "Menu",
+      footer_policy: "Policies",
+      fp1: "Privacy Policy",
+      fp2: "Terms of Use",
+      fp3: "Contact Legal Team",
+      footer_copy: "© 2026 OrmKornnaphat FC · Evidence Archive — All data is demo placeholder, not related to real persons. No harassment or malicious use allowed.",
+      view_btn: "View all evidence for this account",
+      verified_label: "Verified",
+      pending_label: "Pending Review",
+      sev_acc_label: "Offense level (against Orm)",
+      plat_badge: "Platform",
+      type_badge: "Violation type",
+      verified_short: "Verified",
+      pending_short: "Pending",
+      count_label: "total violations",
+      status_watch: "Under Watch",
+      status_legal: "Legal Action",
+      showing: "Showing {n} of {t} evidence items",
+      shot: "[ screenshot ]"
+    }
+  };
+
+  // ===== EVIDENCE DATA (bilingual) =====
+  var data = [
+    {id:1,account:'@user_xxxx01',platform:'x',platformName:'X / Twitter',type:'defame',dateTh:'12 ต.ค. 2569',dateEn:'12 Oct 2026',dateSort:'2026-10-12',status:'verified',descTh:'โพสต์กล่าวหาว่าออมฉ้อโกงเงินบริจาคจากแฟนคลับ โดยไม่มีหลักฐานสนับสนุน',descEn:'Post falsely claims Orm scammed fan club donations, with no supporting evidence.',grad:'linear-gradient(135deg,#fce7f3,#fbcfe8)'},
+    {id:2,account:'@user_xxxx01',platform:'x',platformName:'X / Twitter',type:'false',dateTh:'28 ก.ย. 2569',dateEn:'28 Sep 2026',dateSort:'2026-09-28',status:'verified',descTh:'ทวีตกล่าวอ้างว่าออมมีประวัติผิดกฎหมาย โดยอ้างอิงข้อมูลที่ไม่มีจริง',descEn:'Tweet claims Orm has a criminal record, citing nonexistent information.',grad:'linear-gradient(135deg,#fce7f3,#fbcfe8)'},
+    {id:3,account:'@user_xxxx01',platform:'x',platformName:'X / Twitter',type:'fake',dateTh:'15 ก.ย. 2569',dateEn:'15 Sep 2026',dateSort:'2026-09-15',status:'pending',descTh:'แชร์ข่าวปลอมว่าออมยกเลิกงานแฟนมีติ้ง ได้รับการรีทวีตกว่า 3,000 ครั้ง',descEn:'Shared fake news that Orm cancelled a fan meeting, retweeted over 3,000 times.',grad:'linear-gradient(135deg,#fce7f3,#fbcfe8)'},
+    {id:4,account:'@acct_demo22',platform:'tiktok',platformName:'TikTok',type:'false',dateTh:'08 ต.ค. 2569',dateEn:'08 Oct 2026',dateSort:'2026-10-08',status:'verified',descTh:'วิดีโอสั้นตัดต่อข้อความออมไม่สมบูรณ์ กล่าวอ้างว่ามีพฤติกรรมผิดจริยธรรม',descEn:'Short video edits Orm\'s words out of context, falsely claiming unethical behavior.',grad:'linear-gradient(135deg,#cffafe,#a5f3fc)'},
+    {id:5,account:'@acct_demo22',platform:'tiktok',platformName:'TikTok',type:'harass',dateTh:'20 ก.ย. 2569',dateEn:'20 Sep 2026',dateSort:'2026-09-20',status:'verified',descTh:'ไลฟ์สตรีมใช้คำหยาบคายด่าออมและกระตุ้นผู้ชมไปรบกวนในคอมเมนต์',descEn:'Live stream used profanity against Orm and incited viewers to harass in comments.',grad:'linear-gradient(135deg,#cffafe,#a5f3fc)'},
+    {id:6,account:'FB: account_xxx',platform:'facebook',platformName:'Facebook',type:'harass',dateTh:'05 ต.ค. 2569',dateEn:'05 Oct 2026',dateSort:'2026-10-05',status:'pending',descTh:'คอมเมนต์คุกคามและข่มขู่ออมในโพสต์ของแฟนคลับ หลายครั้ง',descEn:'Repeated threatening and harassing comments against Orm on fan club posts.',grad:'linear-gradient(135deg,#fef3c7,#fde68a)'},
+    {id:7,account:'@ig_sample_44',platform:'instagram',platformName:'Instagram',type:'fake',dateTh:'01 ต.ค. 2569',dateEn:'01 Oct 2026',dateSort:'2026-10-01',status:'verified',descTh:'สตอรี่แชร์ข่าวปลอมว่าออมถูกตัดจากซีรีส์ โดยไม่ตรวจสอบข้อมูล',descEn:'Story shared fake news that Orm was dropped from a series, unverified.',grad:'linear-gradient(135deg,#ede9fe,#ddd6fe)'},
+    {id:8,account:'@ig_sample_44',platform:'instagram',platformName:'Instagram',type:'defame',dateTh:'12 ก.ย. 2569',dateEn:'12 Sep 2026',dateSort:'2026-09-12',status:'verified',descTh:'โพสต์กล่าวหาว่าออมทำธุรกิจหลอกลวงแฟนคลับ โดยไม่มีหลักฐาน',descEn:'Post falsely claims Orm runs a scam business targeting fans, with no evidence.',grad:'linear-gradient(135deg,#ede9fe,#ddd6fe)'},
+    {id:9,account:'YT: channel_demo',platform:'youtube',platformName:'YouTube',type:'defame',dateTh:'28 ก.ย. 2569',dateEn:'28 Sep 2026',dateSort:'2026-09-28',status:'verified',descTh:'วิดีโอความยาว 12 นาที กล่าวหาเท็จออมและใช้ภาพที่ไม่ได้รับอนุญาต',descEn:'12-minute video makes false accusations against Orm and uses unauthorized images.',grad:'linear-gradient(135deg,#fee2e2,#fecaca)'},
+    {id:10,account:'@user_xxxx55',platform:'x',platformName:'X / Twitter',type:'fake',dateTh:'20 ก.ย. 2569',dateEn:'20 Sep 2026',dateSort:'2026-09-20',status:'pending',descTh:'ทวีตแชร์ข้อมูลเท็จเกี่ยวกับผลงานอัลบั้มของออม ได้รับการรีทวีตกว่า 2,000 ครั้ง',descEn:'Tweet shared false info about Orm\'s album sales, retweeted over 2,000 times.',grad:'linear-gradient(135deg,#d1fae5,#a7f3d0)'},
+    {id:11,account:'@user_xxxx55',platform:'x',platformName:'X / Twitter',type:'harass',dateTh:'02 ต.ค. 2569',dateEn:'02 Oct 2026',dateSort:'2026-10-02',status:'verified',descTh:'คอมเมนต์คุกคามแฟนคลับออมหลายคน โดยใช้คำหยาบคาย',descEn:'Comments harassing multiple Orm fans using profanity.',grad:'linear-gradient(135deg,#d1fae5,#a7f3d0)'},
+    {id:12,account:'@demo_acct77',platform:'tiktok',platformName:'TikTok',type:'harass',dateTh:'15 ก.ย. 2569',dateEn:'15 Sep 2026',dateSort:'2026-09-15',status:'verified',descTh:'ไลฟ์สตรีมคุกคามออมเป็นเวลานาน กระตุ้นให้ผู้ชมไปรบกวน',descEn:'Long live stream harassing Orm, inciting viewers to harass.',grad:'linear-gradient(135deg,#e0e7ff,#c7d2fe)'},
+    {id:13,account:'FB: sample_page',platform:'facebook',platformName:'Facebook',type:'false',dateTh:'10 ก.ย. 2569',dateEn:'10 Sep 2026',dateSort:'2026-09-10',status:'verified',descTh:'เพจเผยแพร่บทความกล่าวหาเท็จเกี่ยวกับออม มีการแชร์กว่า 5,000 ครั้ง',descEn:'Page published a false-accusation article about Orm, shared over 5,000 times.',grad:'linear-gradient(135deg,#fce7f3,#fbcfe8)'},
+    {id:14,account:'@weibo_demo88',platform:'weibo',platformName:'Weibo',type:'defame',dateTh:'18 ต.ค. 2569',dateEn:'18 Oct 2026',dateSort:'2026-10-18',status:'verified',descTh:'โพสต์บน Weibo กล่าวหาว่าออมหลอกลวงแฟนคลับจีน ได้รับการแชร์กว่า 1,200 ครั้ง',descEn:'Weibo post falsely claims Orm scammed Chinese fans, shared over 1,200 times.',grad:'linear-gradient(135deg,#ffe4e6,#fecdd3)'},
+    {id:15,account:'@weibo_demo88',platform:'weibo',platformName:'Weibo',type:'false',dateTh:'22 ก.ย. 2569',dateEn:'22 Sep 2026',dateSort:'2026-09-22',status:'verified',descTh:'โพสต์กล่าวอ้างว่าออมแก้ไขผลโหวตรางวัล โดยไม่มีหลักฐานสนับสนุน',descEn:'Post claims Orm rigged an award vote, with no supporting evidence.',grad:'linear-gradient(135deg,#ffe4e6,#fecdd3)'},
+    {id:16,account:'WB: sample_account',platform:'weibo',platformName:'Weibo',type:'fake',dateTh:'25 ต.ค. 2569',dateEn:'25 Oct 2026',dateSort:'2026-10-25',status:'pending',descTh:'แชร์ข่าวปลอมว่าออมยกเลิกงานแฟนมีติ้ง กระจายบน Weibo และกระทู้ฮอต',descEn:'Shared fake news that Orm cancelled a fan meeting, spread on Weibo hot threads.',grad:'linear-gradient(135deg,#ffedd5,#fed7aa)'}
+  ];
+
+  var platformColors = {x:'#000', tiktok:'#010101', facebook:'#1877f2', instagram:'#e1306c', youtube:'#ff0000', weibo:'#e6162d'};
+  var avatarColors = ['#c0268a','#0e8aa8','#ea580c','#7c3aed','#059669','#dc2626','#2563eb','#ca8a04'];
+  var typeColorMap = {defame:'#c0268a', 'false':'#ea580c', harass:'#dc2626', fake:'#7c3aed'};
+  var typeKeyMap = {defame:'t_defame', 'false':'t_false', harass:'t_harass', fake:'t_fake'};
+
+  // ===== ESCAPE HELPER =====
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // ===== STATE =====
+  var lang = 'th', theme = 'light';
+  try {
+    lang = localStorage.getItem('ormfc_lang') || 'th';
+    theme = localStorage.getItem('ormfc_theme') || 'light';
+  } catch(e) {}
+
+  // ===== APPLY THEME =====
+  function applyTheme(t) {
+    theme = t;
+    document.body.setAttribute('data-theme', t);
+    var iconSun = document.getElementById('iconSun');
+    var iconMoon = document.getElementById('iconMoon');
+    if (iconSun && iconMoon) {
+      iconSun.style.display = t === 'dark' ? 'block' : 'none';
+      iconMoon.style.display = t === 'dark' ? 'none' : 'block';
+    }
+    try { localStorage.setItem('ormfc_theme', t); } catch(e) {}
+  }
+  applyTheme(theme);
+
+  // ===== I18N HELPERS =====
+  function t(key) {
+    return (I18N[lang] && I18N[lang][key]) || I18N.th[key] || key;
+  }
+
+  function applyLang() {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      el.innerHTML = t(key);
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-ph');
+      el.placeholder = t(key);
+    });
+    var langLabel = document.getElementById('langLabel');
+    if (langLabel) langLabel.textContent = lang === 'th' ? 'EN' : 'TH';
+    
+    renderAccounts();
+    renderCards();
+    try { localStorage.setItem('ormfc_lang', lang); } catch(e) {}
+  }
+
+  // ===== AGGREGATION =====
+  function aggregate() {
+    var map = {};
+    data.forEach(function(d) {
+      if (!map[d.account]) {
+        map[d.account] = {account: d.account, count: 0, platforms: {}, types: {}, dates: [], verified: 0, pending: 0, platformNames: {}};
+      }
+      var a = map[d.account];
+      a.count++;
+      a.platforms[d.platform] = true;
+      a.platformNames[d.platform] = d.platformName;
+      a.types[d.type] = t(typeKeyMap[d.type]);
+      a.dates.push(d.dateSort);
+      if (d.status === 'verified') a.verified++;
+      else a.pending++;
+    });
+
+    return Object.keys(map).map(function(k) {
+      var a = map[k];
+      a.dates.sort();
+      a.firstDate = a.dates[0];
+      a.lastDate = a.dates[a.dates.length - 1];
+      a.platformList = Object.keys(a.platforms);
+      a.typeList = Object.keys(a.types);
+      a.typeNames = a.types;
+      return a;
+    }).sort(function(a, b) {
+      return b.count - a.count;
+    });
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    var p = iso.split('-');
+    if (lang === 'th') {
+      var m = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+      return parseInt(p[2], 10) + ' ' + m[parseInt(p[1], 10) - 1] + ' ' + (parseInt(p[0], 10) + 543);
+    }
+    var me = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return me[parseInt(p[1], 10) - 1] + ' ' + parseInt(p[2], 10) + ', ' + p[0];
+  }
+
+  // ===== RENDER ACCOUNTS =====
+  function renderAccounts() {
+    var accounts = aggregate();
+    var maxCount = accounts.length ? accounts[0].count : 1;
+    var container = document.getElementById('accountGrid');
+    if (!container) return;
+
+    container.innerHTML = accounts.map(function(a, i) {
+      var initial = a.account.replace(/[@:]/g, '').trim().charAt(0).toUpperCase() || 'A';
+      var color = avatarColors[i % avatarColors.length];
+      var sevPct = Math.round((a.count / maxCount) * 100);
+      var sevColor = a.count >= 3 ? '#dc2626' : (a.count === 2 ? '#ea580c' : '#0e8aa8');
+      var statusLabel = a.pending > 0 ? t('status_watch') : t('status_legal');
+      var statusColor = a.pending > 0 ? '#b45309' : '#15803d';
+      var statusBg = a.pending > 0 ? '#fef3c7' : '#dcfce7';
+
+      var platBadges = a.platformList.map(function(p) {
+        return '<span class="tag" style="background:rgba(128,128,128,.1);color:var(--text);border:1px solid var(--border);">' + escapeHtml(a.platformNames[p]) + '</span>';
+      }).join('');
+
+      var typeBadges = Object.keys(a.typeNames).map(function(tk) {
+        return '<span class="tag" style="background:rgba(128,128,128,.08);color:' + typeColorMap[tk] + ';">' + escapeHtml(a.typeNames[tk]) + '</span>';
+      }).join('');
+
+      return '<div class="acct-card reveal visible" data-account="' + escapeHtml(a.account) + '">'
+        + '<div class="acct-head">'
+        +   '<div class="acct-avatar" style="background:linear-gradient(135deg,' + color + ',' + color + 'bb);">' + initial + '</div>'
+        +   '<div style="flex:1;min-width:0;">'
+        +     '<div class="acct-name">' + escapeHtml(a.account) + '</div>'
+        +     '<div class="acct-date">' + formatDate(a.firstDate) + ' – ' + formatDate(a.lastDate) + '</div>'
+        +   '</div>'
+        +   '<span class="tag" style="background:' + statusBg + ';color:' + statusColor + ';flex-shrink:0;">' + statusLabel + '</span>'
+        + '</div>'
+        + '<div class="acct-countrow">'
+        +   '<span class="acct-count" style="color:' + sevColor + ';">' + a.count + '</span>'
+        +   '<span class="acct-countlabel">' + t('count_label') + '</span>'
+        +   '<span class="acct-verified">' + t('verified_short') + ' ' + a.verified + ' · ' + t('pending_short') + ' ' + a.pending + '</span>'
+        + '</div>'
+        + '<div>'
+        +   '<div class="acct-badgelabel">' + t('sev_acc_label') + '</div>'
+        +   '<div class="severity-bar"><div class="severity-fill" style="width:' + sevPct + '%;background:linear-gradient(90deg,' + sevColor + '66,' + sevColor + ');"></div></div>'
+        + '</div>'
+        + '<div class="acct-badges">'
+        +   '<div><div class="acct-badgelabel">' + t('plat_badge') + '</div><div class="acct-badgerow">' + platBadges + '</div></div>'
+        +   '<div><div class="acct-badgelabel">' + t('type_badge') + '</div><div class="acct-badgerow">' + typeBadges + '</div></div>'
+        + '</div>'
+        + '<button type="button" class="view-btn" data-account="' + escapeHtml(a.account) + '">'
+        +   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
+        +   t('view_btn')
+        + '</button>'
+        + '</div>';
+    }).join('');
+  }
+
+  // ===== RENDER CARDS =====
+  function renderCards() {
+    var pChip = document.querySelector('#platformFilters .chip.active');
+    var tChip = document.querySelector('#typeFilters .chip2.active');
+    var pFilter = pChip ? pChip.getAttribute('data-platform') : 'all';
+    var tFilter = tChip ? tChip.getAttribute('data-type') : 'all';
+    var si = document.getElementById('searchInput');
+    var q = si ? si.value.trim().toLowerCase() : '';
+
+    var filtered = data.filter(function(d) {
+      var matchP = (pFilter === 'all' || d.platform === pFilter);
+      var matchT = (tFilter === 'all' || d.type === tFilter);
+      var desc = (lang === 'th' ? d.descTh : d.descEn).toLowerCase();
+      var acct = d.account.toLowerCase();
+      var matchQ = (!q || acct.indexOf(q) > -1 || desc.indexOf(q) > -1);
+      return matchP && matchT && matchQ;
+    });
+
+    var countEl = document.getElementById('resultCount');
+    if (countEl) {
+      countEl.textContent = t('showing').replace('{n}', filtered.length).replace('{t}', data.length);
+    }
+
+    var emptyEl = document.getElementById('emptyState');
+    if (emptyEl) {
+      emptyEl.style.display = filtered.length === 0 ? 'block' : 'none';
+    }
+
+    var grid = document.getElementById('cardGrid');
+    if (!grid) return;
+
+    grid.innerHTML = filtered.map(function(d) {
+      var statusTag = d.status === 'verified'
+        ? '<span class="tag" style="background:#dcfce7;color:#15803d;">' + t('verified_label') + '</span>'
+        : '<span class="tag" style="background:#fef3c7;color:#b45309;">' + t('pending_label') + '</span>';
+
+      var pc = platformColors[d.platform] || 'var(--muted)';
+      var desc = lang === 'th' ? d.descTh : d.descEn;
+      var date = lang === 'th' ? d.dateTh : d.dateEn;
+
+      var hlAccount = escapeHtml(d.account);
+      if (q && d.account.toLowerCase().indexOf(q) > -1) {
+        var idx = d.account.toLowerCase().indexOf(q);
+        var pre = escapeHtml(d.account.substring(0, idx));
+        var match = escapeHtml(d.account.substring(idx, idx + q.length));
+        var post = escapeHtml(d.account.substring(idx + q.length));
+        hlAccount = pre + '<mark>' + match + '</mark>' + post;
+      }
+
+      return '<div class="ev-card">'
+        + '<div class="ev-shot" style="background:' + d.grad + ';">'
+        +   '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="' + pc + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">'
+        +     '<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'
+        +   '</svg>'
+        +   '<span style="font-size:11px;color:var(--muted);font-weight:600;position:relative;z-index:1;">' + t('shot') + '</span>'
+        + '</div>'
+        + '<div class="ev-body">'
+        +   '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">'
+        +     '<span class="tag" style="background:var(--accent-soft);color:var(--accent);">' + escapeHtml(d.platformName) + '</span>'
+        +     statusTag
+        +   '</div>'
+        +   '<div class="ev-account">' + hlAccount + '</div>'
+        +   '<p class="ev-desc">' + escapeHtml(desc) + '</p>'
+        +   '<div class="ev-foot">'
+        +     '<span class="ev-date">' + escapeHtml(date) + '</span>'
+        +     '<span class="tag" style="background:var(--accent2-soft);color:var(--accent2);">' + t(typeKeyMap[d.type]) + '</span>'
+        +   '</div>'
+        + '</div></div>';
+    }).join('');
+  }
+
+  // ===== REVEAL OBSERVER =====
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    io.observe(el);
+  });
+
+  // ===== TOGGLE LISTENERS =====
+  document.getElementById('langToggle').addEventListener('click', function() {
+    lang = lang === 'th' ? 'en' : 'th';
+    applyLang();
+  });
+
+  document.getElementById('themeToggle').addEventListener('click', function() {
+    applyTheme(theme === 'light' ? 'dark' : 'light');
+  });
+
+  // ===== FILTER & SEARCH LISTENERS =====
+  document.getElementById('platformFilters').addEventListener('click', function(e) {
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    this.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+    b.classList.add('active');
+    renderCards();
+  });
+
+  document.getElementById('typeFilters').addEventListener('click', function(e) {
+    var b = e.target.closest('.chip2');
+    if (!b) return;
+    this.querySelectorAll('.chip2').forEach(function(c) { c.classList.remove('active'); });
+    b.classList.add('active');
+    renderCards();
+  });
+
+  var si = document.getElementById('searchInput');
+  var cb = document.getElementById('clearSearch');
+
+  si.addEventListener('input', function() {
+    cb.style.display = this.value ? 'block' : 'none';
+    renderCards();
+  });
+
+  cb.addEventListener('click', function() {
+    si.value = '';
+    this.style.display = 'none';
+    renderCards();
+    si.focus();
+  });
+
+  document.getElementById('accountGrid').addEventListener('click', function(e) {
+    var b = e.target.closest('[data-account]');
+    if (!b) return;
+    var acct = b.getAttribute('data-account');
+    si.value = acct;
+    cb.style.display = 'block';
+
+    document.querySelectorAll('#platformFilters .chip').forEach(function(c) { c.classList.remove('active'); });
+    var allP = document.querySelector('#platformFilters .chip[data-platform="all"]');
+    if (allP) allP.classList.add('active');
+
+    document.querySelectorAll('#typeFilters .chip2').forEach(function(c) { c.classList.remove('active'); });
+    var allT = document.querySelector('#typeFilters .chip2[data-type="all"]');
+    if (allT) allT.classList.add('active');
+
+    renderCards();
+    var archiveSection = document.getElementById('archive');
+    if (archiveSection) {
+      archiveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  // ===== STATS COUNTER ANIMATION =====
+  document.querySelectorAll('.hstatnum').forEach(function(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / 1200, 1);
+      el.textContent = Math.floor(target * (1 - Math.pow(1 - p, 3))).toLocaleString();
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+
+  // ===== DRAG & DROP + FILE ATTACHMENTS =====
+  var dz = document.getElementById('dropZone');
+  var fi = document.getElementById('fileInput');
+  var fl = document.getElementById('fileList');
+
+  function renderSelectedFiles(files) {
+    fl.innerHTML = '';
+    Array.from(files).forEach(function(f) {
+      if (f.size > 10 * 1024 * 1024) {
+        alert((lang === 'th' ? 'ไฟล์มีขนาดเกิน 10MB: ' : 'File exceeds 10MB: ') + f.name);
+        return;
+      }
+      var d = document.createElement('div');
+      d.className = 'file-chip';
+      d.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>' + escapeHtml(f.name) + '</span><span style="color:var(--muted);margin-left:auto;">' + (f.size / 1024).toFixed(0) + ' KB</span>';
+      fl.appendChild(d);
+    });
+  }
+
+  dz.addEventListener('click', function() {
+    fi.click();
+  });
+
+  fi.addEventListener('change', function() {
+    renderSelectedFiles(fi.files);
+  });
+
+  // Drag & drop event handlers
+  ['dragenter', 'dragover'].forEach(function(evt) {
+    dz.addEventListener(evt, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dz.classList.add('drag-active');
+    });
+  });
+
+  ['dragleave', 'drop'].forEach(function(evt) {
+    dz.addEventListener(evt, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dz.classList.remove('drag-active');
+    });
+  });
+
+  dz.addEventListener('drop', function(e) {
+    var dt = e.dataTransfer;
+    if (dt && dt.files && dt.files.length) {
+      fi.files = dt.files;
+      renderSelectedFiles(dt.files);
+    }
+  });
+
+  // ===== FORM SUBMISSION =====
+  document.getElementById('evidenceForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var successEl = document.getElementById('formSuccess');
+    successEl.style.display = 'block';
+    this.reset();
+    fl.innerHTML = '';
+    setTimeout(function() {
+      successEl.style.display = 'none';
+    }, 6000);
+  });
+
+  // Initial lang application
+  applyLang();
+})();
+</script>
+</body>
+</html>
